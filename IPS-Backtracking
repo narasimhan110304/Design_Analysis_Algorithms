@@ -1,0 +1,33 @@
+def pathprint(matrix,i,j,row,col,path,next_index):
+    ans1=[]
+    ans2=[]
+
+    if j==col-1:
+        for x in range(i,row):path[next_index+x-i]=matrix[x][j]
+        for y in range(next_index+col-i):ans1.append(path[y])
+        print()
+        print(*ans1)
+        return
+    
+    if i==row-1:
+        for x in range(j,col):path[next_index+x-j]=matrix[i][x]
+        for y in range(next_index+col-j):ans2.append(path[y])
+        print(*ans2)
+        print()
+        return
+    
+    path[next_index]=matrix[i][j]
+    
+    pathprint(matrix,i,j+1,row,col,path,next_index+1)
+    pathprint(matrix,i+1,j,row,col,path,next_index+1)
+    
+   
+
+def printer(matrix,row,col):
+    path=[0 for i in range(row+col)]
+    pathprint(matrix,0,0,row,col,path,0)
+
+dimensions=int(input())
+matrix=[[1,2],[3,4]]
+
+printer(matrix,dimensions,dimensions)
