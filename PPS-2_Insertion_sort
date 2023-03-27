@@ -1,0 +1,36 @@
+Selection Sort
+for i=1 to a.length-1
+  min=i
+  for j=i+1 to a.length
+    if a[j]<a[min] --> min=j
+  SWAP(a[min],a[i])
+
+Best Case, Worst Case O(n^2)
+
+Bubble Sort
+for i=1 to a.length-1
+  for j=a.length to i+1
+    if a[j]<a[j-1] SWAP(a[j],a[j-1])
+
+Hormer's Rule - Brute Force
+y=0
+for i=1 to a.length
+  m=1
+  for j=1 to i-1
+    m=mx
+  y=y+m*a[i]
+
+Time O(n^2)
+
+Hormer's Rule - Optimized
+y=0
+for i=a.length to 0
+  y=ai+xj
+
+Summing up with Ascii
+summ(arr)
+  num=0
+  for i=0 to str.length
+    num+=ascii(arr[i])
+  print(num-96*len)
+
