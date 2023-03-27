@@ -1,0 +1,73 @@
+Maximum Subarray Divide and Conquer
+MAXCROSS(a,low,mid,high)
+  leftsum=(-inf)
+  sum=0
+  for i=mid to low
+    sum+=a[i]
+    if sum>leftsum
+      leftsum=sum
+      maxleft=i
+  rightsum=inf
+  sum=0
+  for j=mid+1 to high
+    sum+=a[j]
+    if sum>rightsum
+      rightsum=sum
+      maxright=j
+  return maxleft,maxright,leftsum+rightsum
+
+FIND(a,low,high)
+  if high=low return low,high,a[low]
+  else
+    mid=avg(low,high)
+    ll,lh,ls=FIND(a,low,mid)
+    rl,rh,rs=FIND(a,mid+1,high)
+    cl,ch,cs=MAXCROSS(a,low,mid,high)
+    if ls>rs,cs return ll,lh,ls
+    else if rs>ls,cs return rl,rh,rs
+    else return cl,ch,cs
+
+Maximum Subarray Brute Force
+NAIVE(a,low,high)
+  left=low,right=high
+  sum=(-inf)
+  for i=low to high
+    temp=0
+    from i to high
+      sum+=a[j]
+      if temp>sum
+        sum=temp
+        left=i,right=j
+  return left,right,sum
+
+Maximum Subarray Super Optimized
+best=(-inf)
+current,left,right=0
+currleft=0
+from low to high --> current+=a[i]
+if current>best
+  best=current
+  left=currleft
+  right=i
+if current<0
+  current=0
+  currleft=i+1
+return left,right,best
+
+Kadane's Algo Maximum Subarray Iterative
+KADANE(arr,n)
+  max1=(-inf),max2=0
+  for i=0 to n-1
+    max2+=arr[i]
+    if max1<max2 --> max1=max2
+    if max2<0 --> max2=0
+  return max1
+
+Power Set (Sample CAT-1)
+FUNC(str,index=-1,nullstr="")
+  if index=n return
+  print nullstr
+  for i=index+1 to n-1
+    nullstr+=str[i]
+    FUNC(str,i,nullstr)
+    nullstr.erase(nullstr.size-1)
