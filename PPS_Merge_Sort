@@ -1,0 +1,80 @@
+Merge Sort
+merge(a,p,q,r)
+  x=q-p+1,y=r-q
+  left[x+1],right[y+1]
+  for i=1 to x --> left[i]=a[p+i-1]
+  for j=1 to y --> right[j]=a[q+j]
+  left[x+1],right[y+1]=inf,inf
+  i,j=1,1
+  for k=p to r
+    if left[i]<=right[j] --> a[k]=left[i],i++
+    else a[k]=right[j],j++
+
+mergesort(a,p,r)
+  if p<r
+    q=avg(p,r)
+    mergesort(a,p,q)
+    mergesort(a,q+1,r)
+    merge(a,p,q,r)
+    
+Time O(logn)
+
+Book exercise 2.3.2
+for k=p to r
+  if i>x --> a[k]=right[j],j++
+  else if j>y --> a[k]=left[i],j++
+  if left[i]<=right[j] --> a[k]=left[i],i++
+  else a[k]=right[j],j++
+
+Recursive Insertion sort
+RA(arr,n)
+  if n<=1 return
+  RA(arr,n-1)
+  last=arr[n-1]
+  j=n-2
+  while j>0 and arr[j]>last
+    arr[j+1]=arr[j]
+  arr[j+1]=last
+
+Recursive Binary Search
+RA(a,low,high,x)
+  if low>high --> FALSE
+  else
+    mid=avg(low,high)
+    if a[x]=mid --> return mid
+    else if a[x]>mid --> RA(a,mid+1,high,x)
+    else RA(a,low,mid-1,x)
+
+Binary Insertion Sort
+for j=1 to a.length
+  i=j-1
+  key=a[j]
+  p=BINARY_SEARCH_ALGORITHM(a,key,0,i)
+  while j>=p
+    a[j+1]=a[j]
+    j--
+  a[j+1]=key
+  
+Two Sum (2.3.7)
+mergesort(a,1,a.length)
+  for i=1 to a.length
+    j=BINARY_SEARCH_ALGORITHM(a,x-a[i])
+    if j!=0,i --> TRUE
+  FALSE
+
+Inversion Problem (PAT-1 will be modified version) count the inversions
+COUNT(a,p,r)
+  q=avg(p,r)
+  left=COUNT(a,p,q)
+  right=COUNT(a,q+1,r)
+  inv=left+right+merge(a,p,q,r)
+
+Modified Merge Sort
+inv=0
+for k=p to r
+  if left[i]<=right[j]
+    a[k]=left[i],i++
+  else
+    inv=x-i+1
+    a[k]=right[j]
+    j++
